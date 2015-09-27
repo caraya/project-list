@@ -19,36 +19,35 @@ The component uses `marked-element` to render markdown in the project descriptio
   <link rel="stylesheet" href="athena-layout.css">
   <template>
       <firebase-collection
-        order-by-child="type"
         location="https://my-project-list.firebaseio.com/projects"
         data="{{projects}}">
       </firebase-collection>
-    </template>
+
+      <template is="dom-repeat" items="[[projects]]">
+        <paper-material>
+          <h2><span>[[item.name]]</span></h2>
+
+          <div class="project-desc"><marked-element markdown="[[item.description]]"></marked-element></div>
+
+          <h3>Project Details</h3>
+          <ul>
+            <li><span>[[item.type]]</span></li>
+            <li><span>[[item.stage]]</span></li>
+          </ul>
+
+          <h3>Project Related Links</h3>
+          <ul>
+            <li><a href="[[item.url.writing]]">[[item.url.writing]]</a></li>
+            <li><a href="[[item.url.code]]">[[item.url.code]]</a></li>
+            <li><a href="[[item.url.other]]">[[item.url.other]]</a></li>
+          </ul>
+
+          <h3>Project Notes</h3>
+          <div class="project-notes"><marked-element markdown="[[item.notes]]"></marked-element></div>
+        </paper-material>
+      </template>
+
   </template>
-
-  <template is="dom-repeat" items="[[projects]]">
-      <paper-material>
-        <h2><span>[[project.name]]</span></h2>
-
-        <div class="project-desc"><marked-element markdown="[[project.description]]"></marked-element></div>
-
-        <h3>Project Details</h3>
-        <ul>
-          <li><span>[[project.type]]</span></li>
-          <li><span>[[project.stage]]</span></li>
-        </ul>
-
-        <h3>Project Related Links</h3>
-        <ul>
-          <li><span>[[project.url.writing]]</span></li>
-          <li><span>[[project.url.code]]</span></li>
-          <li><span>[[project.url.other]]</span></li>
-        </ul>
-
-        <h3>Project Notes</h3>
-        <div class="project-notes"><marked-element markdown="[[project.notes]]"></marked-element></div>
-      </paper-material>
-    </template>
 
   <script>
     Polymer({

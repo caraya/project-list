@@ -23,13 +23,11 @@ paper-toolbar {
   background-color: #42A5F5;
 }
 
-.content {
-  padding: 0 16px;
-}
 
 paper-material {
-  height: 100%;
-  max-width: 800px;
-  margin: 16px auto;
   background-color: #fff;
+  border-radius: 1em;
+  max-width: 80%;
+  margin: 1em auto;
+  padding: 1em;
 }
