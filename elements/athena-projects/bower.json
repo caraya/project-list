@@ -1,0 +1,26 @@
+{
+  "name": "athena-projects",
+  "version": "0.0.1",
+  "description": "pulls info from firebase and displays it",
+  "private": true,
+  "authors": [
+    "Carlos Araya"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "ajax",
+    "athena"
+  ],
+  "main": "athena-projects.html",
+  "repository": {
+    "type": "git"
+  },
+  "license": "http://caraya.mit-license.org",
+  "homepage": "",
+  "ignore": [],
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
