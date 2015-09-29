@@ -1,0 +1,80 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements.html">
+
+<!--
+`athena-menu` reduces the clutter on the index page by making the menu a component. Right now these are all external links. At some point we might add internal links and need scripting for now it's not
+
+@demo demo/index.html
+-->
+<dom-module id="athena-menu">
+  <link rel="stylesheet" href="athena-layout.css">
+  <template>
+    <div class="menu">
+    <h3>Professional</h3>
+    <paper-menu>
+      <paper-item>
+        <iron-icon icon="social:person"></iron-icon>
+        <paper-item-body>
+          <a href="https://drive.google.com/file/d/0B5FUpY1SRnFaR09YWHFuWkxCN3M/view?usp=sharing">Resume</a>
+      </paper-item>
+
+    <h3>Code and Samples</h3>
+      <paper-item>
+        <iron-icon src="images/wp-logo.png" alt="Publishing Blog" Title="Publishing Blog"></iron-icon>
+        <paper-item-body>
+          <a href="http://publishing-project.rivendellweb.net/">Publishing Blog</a>
+        </paper-item-body>
+      </paper-item>
+      <paper-item>
+        <iron-icon src="images/Octocat.png" alt="octocat" title="octocat"></iron-icon>
+        <paper-item-body>
+          <a href="https://github.com/caraya/">Github</a>
+        </paper-item-body>
+      </paper-item>
+      <paper-item>
+        <iron-icon src="images/Button-Black-Large.png" alt="codepen" title="codepen"></iron-icon>
+        <paper-item-body>
+          <a href="http://codepen.io/caraya/">Codepen</a>
+        </paper-item-body>
+      </paper-item>
+      <paper-item>
+         <iron-icon icon="editor:insert-link"></iron-icon>
+         <paper-item-body>
+           <a href="http://labs.rivendellweb.net/">Labs</a>
+         </paper-item-body>
+      </paper-item>
+
+      <h3>Social</h3>
+      <paper-item>
+          <iron-icon src="images/linkedin-logo.png" alt="LinkedIn" title="LinkedIn"></iron-icon>
+        <paper-item-body>
+          <a href="http://www.linkedin.com/in/carlosaraya/">LinkedIn</a>
+        </paper-item-body>
+      </paper-item>
+      <paper-item>
+        <iron-icon src="images/gplus-logo.png" alt="Google Plus" title="Google Plus"></iron-icon>
+        <paper-item-body>
+          <a href="https://plus.google.com/+CarlosAraya25/posts/p/pub">Google Plus</a>
+        </paper-item-body>
+      </paper-item>
+      <paper-item>
+        <iron-icon src="images/twitter-logo.png" alt="Twitter" ></iron-icon>
+        <paper-item-body>
+          <a href="http://twitter.com/elrond25">Twitter</a>
+        </paper-item-body>
+      </paper-item>
+      </paper-menu>
+
+    </div>
+  </template>
+  <script>
+
+    Polymer({
+
+      is: 'athena-menu'
+
+    });
+
+  </script>
+
+</dom-module>

@@ -1,0 +1,61 @@
+<!-- Polymer -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<!-- Firebase -->
+<link rel="import" href="../../bower_components/firebase-element/firebase.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-collection.html">
+<!-- Marked -->
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<!--
+`athena-projects` takes a the output of a Firebase database and displays it according to the display setup in the second template.
+
+    <athena-projects></athena-projects>
+
+The component uses `marked-element` to render markdown in the project description and project notes section
+
+@demo demo/index.html
+-->
+
+<dom-module id="athena-projects">
+  <link rel="stylesheet" href="athena-layout.css">
+  <template>
+      <firebase-collection
+        location="https://my-project-list.firebaseio.com/projects"
+        data="{{projects}}">
+      </firebase-collection>
+
+      <template is="dom-repeat" items="[[projects]]">
+        <paper-material>
+          <h2><span>[[item.name]]</span></h2>
+
+          <div class="project-desc"><marked-element markdown="[[item.description]]"></marked-element></div>
+
+          <h3>Project Details</h3>
+          <ul>
+            <li><span>[[item.type]]</span></li>
+            <li><span>[[item.stage]]</span></li>
+          </ul>
+
+          <h3>Project Related Links</h3>
+          <ul>
+            <li><a href="[[item.url.writing]]">[[item.url.writing]]</a></li>
+            <li><a href="[[item.url.code]]">[[item.url.code]]</a></li>
+            <li><a href="[[item.url.other]]">[[item.url.other]]</a></li>
+          </ul>
+
+          <h3>Project Notes</h3>
+          <div class="project-notes"><marked-element markdown="[[item.notes]]"></marked-element></div>
+        </paper-material>
+      </template>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'athena-projects'
+
+    });
+
+  </script>
+
+</dom-module>
