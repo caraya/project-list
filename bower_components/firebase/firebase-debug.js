@@ -1,4 +1,4 @@
-/*! @license Firebase v2.3.0
+/*! @license Firebase v2.3.2
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function(ns) {
   ns.wrapper = function(goog, fb) {
@@ -6,7 +6,7 @@
     var CLOSURE_NO_DEPS = true;
 
     // Sets CLIENT_VERSION manually, since we can't use a closure --define with WHITESPACE_ONLY compilation.
-    var CLIENT_VERSION = '2.3.0';
+    var CLIENT_VERSION = '2.3.2';
     var COMPILED = false;
 var goog = goog || {};
 goog.global = this;
@@ -4257,9 +4257,9 @@ fb.core.RepoInfo.prototype.connectionURL = function(type, params) {
     params["ns"] = this.namespace;
   }
   var pairs = [];
-  goog.object.forEach(params, function(pairs, element, index, obj) {
+  goog.object.forEach(params, function(element, index, obj) {
     pairs.push(index + "=" + element);
-  }.bind(this, pairs));
+  });
   return connURL + pairs.join("&");
 };
 fb.core.RepoInfo.prototype.toString = function() {
@@ -7498,28 +7498,6 @@ fb.core.util.ImmutableTree = goog.defineClass(null, {constructor:function(value,
       }
     }
   }
-}, foreachOnPathWhile:function(path, f) {
-  return this.foreachOnPathWhile_(path, fb.core.util.Path.Empty, f);
-}, foreachOnPathWhile_:function(pathToFollow, currentRelativePath, f) {
-  if (pathToFollow.isEmpty()) {
-    return currentRelativePath;
-  } else {
-    var shouldContinue = true;
-    if (this.value) {
-      shouldContinue = f(currentRelativePath, this.value);
-    }
-    if (shouldContinue === true) {
-      var front = pathToFollow.getFront();
-      var nextChild = this.children.get(front);
-      if (nextChild) {
-        return nextChild.foreachOnPath_(pathToFollow.popFront(), currentRelativePath.child(front), f);
-      } else {
-        return currentRelativePath;
-      }
-    } else {
-      return currentRelativePath;
-    }
-  }
 }, foreachOnPath:function(path, f) {
   return this.foreachOnPath_(path, fb.core.util.Path.Empty, f);
 }, foreachOnPath_:function(pathToFollow, currentRelativePath, f) {
@@ -8244,11 +8222,10 @@ fb.core.SyncTree.prototype.addEventRegistration = function(query, eventRegistrat
   var path = query.path;
   var serverCache = null;
   var foundAncestorDefaultView = false;
-  this.syncPointTree_.foreachOnPathWhile(path, function(pathToSyncPoint, sp) {
+  this.syncPointTree_.foreachOnPath(path, function(pathToSyncPoint, sp) {
     var relativePath = fb.core.util.Path.relativePath(pathToSyncPoint, path);
-    serverCache = sp.getCompleteServerCache(relativePath);
+    serverCache = serverCache || sp.getCompleteServerCache(relativePath);
     foundAncestorDefaultView = foundAncestorDefaultView || sp.hasCompleteView();
-    return!serverCache;
   });
   var syncPoint = this.syncPointTree_.get(path);
   if (!syncPoint) {
